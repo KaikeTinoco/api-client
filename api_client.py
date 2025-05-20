@@ -1,6 +1,6 @@
 import requests
 
-URL_API = "localhost:8000"
+URL_API = "http://localhost:8080"
 
 def criarPersonagem(personagemDtoJson, campanhaId):
     url = f"{URL_API}/personagens/criar"
