@@ -83,6 +83,28 @@ def deletarCampanha(id):
     else:
         raise Exception(f"Erro ao deletar campanha: {response.status_code} {response.text}")
     
+def buscarPersonagem(nomeCampanha, nomePersonagem):
+    url = f"{URL_API}/personagens/busca"
+    params = {"nomeCampanha": nomeCampanha, "nomePersonagem": nomePersonagem}
+
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception(f"Erro ao buscar personagem: {response.status_code} {response.text}")
+    
+
+def atualizarPersonagem(nomeCampanha, personagem):
+    url = f"{URL_API}/personagens/atualizar"
+    params = {"nomeCampanha": nomeCampanha}
+    headers = {"Content-Type": "application/json"}
+
+    response = requests.put(url, json=personagem, params=params, headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception(f"Erro ao atualizar personagem: {response.status_code} {response.text}")
+    
 
 
     
