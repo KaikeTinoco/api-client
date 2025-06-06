@@ -1,12 +1,13 @@
 import requests
+import json
 
 URL_API = "http://localhost:8080"
 
 def criarPersonagem(personagemDtoJson, campanhaId):
     url = f"{URL_API}/personagens/criar"
     params = {"campanhaId": campanhaId}
-    headers = {"Content-Type": "application/json"}  
-
+    headers = {"Content-Type": "application/json"}      
+    
     response = requests.post(url, json=personagemDtoJson, params=params, headers=headers)
 
     if response.status_code == 201:
@@ -106,5 +107,18 @@ def atualizarPersonagem(nomeCampanha, personagem):
         raise Exception(f"Erro ao atualizar personagem: {response.status_code} {response.text}")
     
 
+def atualizarCampanha(resumoDto):
+    url = f"{URL_API}/bot/atualizar"
+    headers = {"Content-Type": "application/json"}
+
+    response = requests.post(url, json=resumoDto, headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception(f"Erro ao atualizar campanha: {response.status_code} {response.text}")
+
+
+
+    
 
     
