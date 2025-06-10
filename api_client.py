@@ -35,9 +35,9 @@ def listarPersonagens(campanhaId = None, campanhaNome = None):
 def criarCampanha(campanhaDtoJson):
     url = f"{URL_API}/campanha/criar"
     headers = {"Content-Type": "application/json"}
-
+    
     response = requests.post(url, json=campanhaDtoJson, headers=headers)
-
+    
     if response.status_code == 201:
         return response.json()
     else:
@@ -108,7 +108,7 @@ def atualizarPersonagem(nomeCampanha, personagem):
     
 
 def atualizarCampanha(resumoDto):
-    url = f"{URL_API}/bot/atualizar"
+    url = f"{URL_API}/campanha/atualizar"
     headers = {"Content-Type": "application/json"}
 
     response = requests.post(url, json=resumoDto, headers=headers)
